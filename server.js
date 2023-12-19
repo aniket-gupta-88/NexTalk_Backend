@@ -8,8 +8,14 @@ const { MONGODB_URL } = require("./config/keys");
 require('dotenv').config();
 
 const app = express();
+
+const corsOptions = {
+  origin: "https://nex-talk-frontend-4hre4o8fy-aniket-gupta-88.vercel.app",
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
-app.use(cors());
 app.use(cookieParser());
 
 //Socket
@@ -36,9 +42,9 @@ const URI = MONGODB_URL;
 
 mongoose
   .connect(URI)
-   .then(() => {
-     console.log("Connected to MongoDB successfully.");
-   })
+  .then(() => {
+    console.log("Connected to MongoDB successfully.");
+  })
   .catch((err) => {
     console.error("Error connecting to MongoDB:", err);
   });
