@@ -10,7 +10,7 @@ require('dotenv').config();
 const app = express();
 
 const corsOptions = {
-  origin: "https://nex-talk-frontend-4hre4o8fy-aniket-gupta-88.vercel.app",
+  origin: "*",
   credentials: true,
 };
 
