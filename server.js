@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const SocketServer = require("./socketServer");
 const { PeerServer } = require("peer");
 const { MONGODB_URL } = require("./config/keys");
+require('dotenv').config();
 
 const app = express();
 app.use(express.json());
@@ -38,9 +39,9 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  // .then(() => {
-  //   console.log("Connected to MongoDB successfully.");
-  // })
+   .then(() => {
+     console.log("Connected to MongoDB successfully.");
+   })
   .catch((err) => {
     console.error("Error connecting to MongoDB:", err);
   });
