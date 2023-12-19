@@ -35,10 +35,7 @@ app.use("/api", require("./routes/messageRouter"));
 const URI = MONGODB_URL;
 
 mongoose
-  .connect(URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(URI)
    .then(() => {
      console.log("Connected to MongoDB successfully.");
    })
