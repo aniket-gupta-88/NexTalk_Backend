@@ -8,12 +8,7 @@ const { MONGODB_URL } = require("./config/keys");
 require('dotenv').config();
 
 const app = express();
-
-const corsOptions = {
-  origin: "https://https://nex-talk-frontend-g8gl52shw-aniket-gupta-88.vercel.app/"
-};
-
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 
