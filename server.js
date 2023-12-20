@@ -1,15 +1,14 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const SocketServer = require("./socketServer");
 const { PeerServer } = require("peer");
-const { MONGODB_URL } = require("./config/keys");
-require('dotenv').config();
 
 const app = express();
-app.use(cors());
 app.use(express.json());
+app.use(cors());
 app.use(cookieParser());
 
 //Socket
@@ -32,10 +31,13 @@ app.use("/api", require("./routes/commentRouter"));
 app.use("/api", require("./routes/notifyRouter"));
 app.use("/api", require("./routes/messageRouter"));
 
-const URI = MONGODB_URL;
+const URI = process.env.MONGODB_URL;
 
 mongoose
-  .connect(URI)
+  .connect(URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => {
     console.log("Connected to MongoDB successfully.");
   })
