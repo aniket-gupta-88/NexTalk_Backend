@@ -12,6 +12,15 @@ app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 
+//Extras
+const methodNotAllowedHandler = (req, res, next) => {
+  res.status(405).json({ error: 'Method Not Allowed'});
+};
+
+// Apply the middleware after your routes
+app.use(methodNotAllowedHandler);
+
+
 //Socket
 const http = require("http").createServer(app);
 const io = require("socket.io")(http);
